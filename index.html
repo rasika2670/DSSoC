@@ -8,54 +8,68 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script> 
     <style>
         body {
-            background-color: #597cff;
+            background-color: #597cff; 
             font-family: "Pixelify Sans", sans-serif;
             font-weight: 500;
             font-style: normal;
         }
         .bg-cream {
-            background-color: #ddb892;
-        }
-        .fade-in {
-            animation: fadeIn 1s ease-in-out forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .slide-up {
-            animation: slideUp 0.5s ease forwards;
-        }
-        @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            background-color: #ddb892; 
         }
         .typing {
-            border-right: 2px solid white; /* Cursor effect */
+            border-right: 2px solid white; 
             white-space: nowrap;
             overflow: hidden;
             animation: typing 2s steps(30, end), blink-caret 0.75s step-end infinite;
         }
-        
         @keyframes typing {
             from { width: 0; }
             to { width: 100%; }
         }
-        
         @keyframes blink-caret {
             from, to { border-color: transparent; }
             50% { border-color: white; }
+        }
+
+        /* Disintegration Effect */
+        .disintegrate {
+            position: relative; 
+        }
+        .disintegrate::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('./Image/TECHSABHA.svg'); /* Use same image as the main one */
+            background-size: cover;
+            z-index: 1; /* Ensure it's above the main image */
+            animation: disintegrateAnimation 2s forwards; 
+            opacity: 0; /* Initially hide the overlay image */
+        }
+
+        @keyframes disintegrateAnimation {
+            0% { opacity: 1; }
+            100% {
+                opacity: 0;
+                transform: scale(1.1) translateX(-10%); 
+                clip-path: polygon(0% 0%, 10% 0%, 30% 100%, 0% 100%);
+            }
+        }
+
+        .disintegrate:hover::before {
+            animation: none; /* Pause animation on hover */
+            opacity: 1;      /* Show the overlay image on hover */
         }
     </style>
 </head>
 <body class="text-white">
 
-    <!-- Navigation Bar -->
-    <nav class="flex md:flex-row justify-between items-center gap-4 m-4 sticky top-0 bg-blue-700
-    ]\ rounded-lg shadow-lg z-50 p-4">
+    <nav class="flex md:flex-row justify-between items-center gap-4 m-4 sticky top-0 bg-blue-800 rounded-lg shadow-lg z-50 p-4">
         <div>
             <a href="#home" class="flex items-center gap-2 text-2xl font-light text-white">
                 <img src="./Image/DESOC.png" alt="Desoc" class="h-8">
@@ -69,69 +83,61 @@
         </div>
     </nav>
 
-    <!-- Main Content Section -->
     <main class="wrap">
-
-        <!-- Header Section -->
-        <section class="bg-cream p-5 text-center min-h-screen flex flex-col items-center justify-center fade-in relative" id="home">
-            <h1 class="text-3xl w-fit md:text-6xl md:w-[75%] font-bold mb-4">Welcome to TechSabha</h1>
-            <img src="./Image/&.png" alt="Event Logo" class="mx-auto mt-4 w-3/4 md:w-1/2">
-            <h3 class="text-xl md:text-2xl mt-4">TechSabha: A Unique Debate Experience!</h3>
-            <p class="mt-2 w-full md:w-2/3 text-center px-4">Join us for a one-of-a-kind debate competition that merges the traditional essence of local gram panchayat with the rich narratives of Greek mythology.</p>
+        <section class="bg-cream p-5 text-center min-h-screen flex flex-col items-center justify-center relative" id="home">
+            <h1 class="text-3xl w-fit md:text-6xl md:w-[75%] font-bold mb-4 reveal-left">Welcome to TechSabha</h1>
+            <img src="./Image/&.png" alt="Event Logo" class="mx-auto mt-4 w-3/4 md:w-1/2 reveal-bottom" data-sr-delay="300">
+            <h3 class="text-xl md:text-2xl mt-4 reveal-right" data-sr-delay="600">TechSabha: A Unique Debate Experience!</h3>
+            <p class="mt-2 w-full md:w-2/3 text-center px-4 reveal-left" data-sr-delay="900">Join us for a one-of-a-kind debate competition that merges the traditional essence of local gram panchayat with the rich narratives of Greek mythology.</p>
         </section>
 
-        <!-- About Section -->
-        <section class="min-h-screen flex flex-col items-center justify-center slide-up bg-blue-700 p-5" id="about">
-            <h1 class="text-4xl md:text-5xl font-semibold mb-4">About the Event</h1>
-            <img src="./Image/TECHSABHA.svg" alt="TechSabha Logo" class="w-64 md:w-80 mb-4">
-            <p class="mt-2 text-center w-full md:w-2/3">Join us for an exciting debate competition featuring 16 teams in a one-on-one format. Experience the thrill of competition while engaging in discussions inspired by Greek mythology.</p>
+        <section class="min-h-screen flex flex-col items-center justify-center bg-blue-700 p-5" id="about">
+            <h1 class="text-4xl md:text-5xl font-semibold mb-4 reveal-top">About the Event</h1>
+            <img src="./Image/TECHSABHA.svg" alt="TechSabha Logo" class="w-64 md:w-80 mb-4 disintegrate reveal-fade">
+            <p class="mt-2 text-center w-full md:w-2/3 reveal-bottom" data-sr-delay="300">Join us for an exciting debate competition featuring 16 teams in a one-on-one format. Experience the thrill of competition while engaging in discussions inspired by Greek mythology.</p>
 
-            <h2 class="text-2xl md:text-3xl font-semibold mt-6">Countdown to Registration</h2>
-            <div id="timer" class="text-xl md:text-2xl mt-2"></div>
-            <div class="flex gap-4 items-center ">
-                <button id="registerButton" class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed">
-                    Register Now
-                </button> |
-                <button id="whatsapp" class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed">
-                    Whatsapp Group
-                </button>
+            <h2 class="text-2xl md:text-3xl font-semibold mt-6 reveal-left" data-sr-delay="600">Countdown to Registration</h2>
+            <div id="timer" class="text-xl md:text-2xl mt-2 reveal-right" data-sr-delay="900"></div>
+
+            <div class="flex gap-4 items-center mt-4 reveal-bottom" data-sr-delay="1200">
+                <button id="registerButton" class="bg-gray-500 text-white font-bold py-2 px-4 rounded opacity-75 cursor-not-allowed" disabled>Register Now</button>
+                <a href="https://your-whatsapp-group-link" target="_blank" id="whatsapp" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+                    Join WhatsApp Group
+                </a>
             </div>
         </section>
 
-        <!-- Club Details Section -->
-<section class="min-h-screen flex flex-col items-center justify-center slide-up bg-blue-800 p-5 overflow-hidden" id="us">
-    <img src="./Image/pillr.svg" alt="" height="550px" class="absolute top-0 hidden md:block">
-    <img src="./Image/pilll.svg" alt="" height="550px" class="absolute top-0 hidden lg:block">
-    <h2 class="text-3xl md:text-4xl font-semibold mb-6">Organised By</h2>
-    <div class="flex flex-col md:flex-row gap-8">
-        <div class="flex flex-col text-center items-center">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                <img src="./Image/DESOC.png" alt="Desoc" class="h-48 mb-4 rounded-lg shadow-lg hover:scale-105 transition-transform">
-            </a>
-            <h3 class="text-xl md:text-2xl">DESOC Club</h3>
-        </div>
-        <div class="flex flex-col text-center items-center">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                <img src="./Image/Phoenix.png" alt="Phoenix" class="h-48 mb-4 rounded-lg shadow-lg hover:scale-105 transition-transform">
-            </a>
-            <h3 class="text-xl md:text-2xl">Phoenix Club</h3>
-        </div>
-    </div>
-</section>
-
+        <section class="min-h-screen flex flex-col items-center justify-center relative bg-blue-800 p-5 overflow-hidden" id="us">
+            <div class="absolute top-0 left-0 w-full h-full flex justify-between">
+                <img src="./Image/pilll.svg" alt="" height="550px" class="hidden md:block" data-sr-delay="300">
+                <img src="./Image/pillr.svg" alt="" height="550px" class="hidden md:block" data-sr-delay="300">
+            </div>
+            <h2 class="text-3xl md:text-4xl font-semibold mb-6 reveal-bottom" data-sr-delay="600">Organised By</h2>
+            <div class="flex flex-col md:flex-row gap-8 reveal-fade" data-sr-delay="900">
+                <div class="flex flex-col text-center items-center">
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                        <img src="./Image/DESOC.png" alt="Desoc" class="h-48 mb-4 rounded-lg shadow-lg hover:scale-105 transition-transform">
+                    </a>
+                    <h3 class="text-xl md:text-2xl">DESOC Club</h3>
+                </div>
+                <div class="flex flex-col text-center items-center">
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                        <img src="./Image/Phoenix.png" alt="Phoenix" class="h-48 mb-4 rounded-lg shadow-lg hover:scale-105 transition-transform">
+                    </a>
+                    <h3 class="text-xl md:text-2xl">Phoenix Club</h3>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer Section -->
-    <footer class="bg-cream p-5 text-center">
+    <footer class="bg-cream p-5 text-center reveal-fade">
         <p>&copy; 2024 TechSabha. All rights reserved.</p>
     </footer>
 
-    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
     
     <script>
-        // Countdown Timer Script
         const countdownDate = new Date("October 10, 2024 00:00:00").getTime();
         const timerElement = document.getElementById("timer");
         const registerButton = document.getElementById("registerButton");
@@ -150,37 +156,33 @@
                 clearInterval(x);
                 timerElement.innerHTML = "Registration Open!";
                 registerButton.disabled = false;
-                registerButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-                registerButton.classList.add('bg-green-600', 'hover:bg-green-700');
+                registerButton.classList.remove('bg-gray-500', 'opacity-75', 'cursor-not-allowed');
+                registerButton.classList.add('bg-green-500', 'hover:bg-green-600');
+                registerButton.innerText = 'Register Now'; 
             }
         }, 1000);
 
-        // Typing Effect Script
         document.addEventListener("DOMContentLoaded", function() {
             const headings = document.querySelectorAll('h1, h2, h3');
 
             headings.forEach((heading) => {
                 const text = heading.innerText;
-                heading.innerHTML = ''; // Clear the heading text
+                heading.innerHTML = ''; 
                 let index = 0;
 
                 function type() {
                     if (index < text.length) {
                         heading.innerHTML += text.charAt(index);
                         index++;
-                        // Randomize delay for a more natural typing effect
-                        const delay = Math.random() * 100 + 50; // Between 50ms and 150ms
+                        const delay = Math.random() * 100 + 50; 
                         setTimeout(type, delay);
                     } else {
-                        heading.classList.add('typing'); // Add typing class after typing is done
+                        heading.classList.add('typing'); 
                     }
                 }
                 type();
             });
-        });
 
-        // Vanta.js Background Effect
-        document.addEventListener("DOMContentLoaded", function() {
             VANTA.NET({
               el: "#home",
               mouseControls: true,
@@ -196,6 +198,13 @@
               maxDistance: 22.00,
               spacing: 16.00
             });
+
+            // ScrollReveal Initialization
+            ScrollReveal().reveal('.reveal-left', { origin: 'left', distance: '20px', duration: 1000 });
+            ScrollReveal().reveal('.reveal-right', { origin: 'right', distance: '20px', duration: 1000 });
+            ScrollReveal().reveal('.reveal-top', { origin: 'top', distance: '30px', duration: 1000 });
+            ScrollReveal().reveal('.reveal-bottom', { origin: 'bottom', distance: '30px', duration: 1000 });
+            ScrollReveal().reveal('.reveal-fade', { duration: 1000, delay: 300 });
         });
     </script>
 </body>
