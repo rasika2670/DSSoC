@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechSabha - Debate Competition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #9c6644;
+            font-family: "Pixelify Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal; /* Dark RGB theme */
+        }
+        .bg-cream {
+            background-color: #ddb892;
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .slide-up {
+            animation: slideUp 0.5s ease forwards;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .typing {
+               border-right: 2px solid white; /* Cursor effect */
+               white-space: nowrap;
+               overflow: hidden;
+               animation: typing 2s steps(30, end), blink-caret 0.75s step-end infinite;
+         }
+      
+         @keyframes typing {
+               from { width: 0; }
+               to { width: 100%; }
+         }
+      
+         @keyframes blink-caret {
+               from, to { border-color: transparent; }
+               50% { border-color: white; }
+         }
+    </style>
+</head>
+<body class="text-white">
+
+   <nav class="flex justify-between gap-4 m-4 font-green-600 ">
+      <div >
+         <a href="#home" class="flex gap-2 text-2xl font-light">
+         <img src="./Image/DESOC.png" alt="Desoc" class=" h-8">|
+         <img src="./Image/Phoenix.png" alt="Phoenix" class="h-8">
+         </a>
+      </div>
+      <div class="flex gap-4">
+         <a href="#home" class="hover:text-blue-400 hover:underline transition">Home</a>
+         <a href="#about" class="hover:text-blue-400 hover:underline transition">About</a>
+         <a href="#us" class="hover:text-blue-400 hover:underline transition">Contact Us</a>
+      </div>
+   </nav>
+
+    <!-- Main Content Section -->
+    <main>
+
+         <!-- Header Section -->
+         <div class="bg-cream p-5 text-center min-h-screen flex flex-col items-center justify-center fade-in" id="vanta-bg">
+
+            <h1 class="text-4xl font-bold">Welcome to TechSabha</h1>
+            
+            <img src="./Image/&.png" alt="Event Logo" class="mx-auto mt-4 w-1/2">
+            
+            <h3>TechSabha: A Unique Debate Experience!</h3>
+            <p class="mt-2 w-1/2 text-center">Join us for a one-of-a-kind debate competition that merges the traditional essence of local gram panchayat with the rich narratives of Greek mythology.</p>
+         </div>
+
+         <!-- About Section -->
+         <section class="min-h-screen flex flex-col items-center justify-center slide-up" id="about">
+            <h1 class="text-5xl font-semibold">About the Event</h1>
+            <p class="mt-2 text-center">Join us for an exciting debate competition featuring 16 teams in a one-on-one format. Experience the thrill of competition while engaging in discussions inspired by Greek mythology.</p>
+
+            <h2 class="text-3xl font-semibold mt-6">Countdown to Registration</h2>
+            <div id="timer" class="text-2xl mt-2"></div>
+            <button id="registerButton" class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" disabled>Register Now</button>
+        </section>
+
+        <!-- Club Details Section -->
+        <section class="min-h-screen flex flex-col items-center justify-center slide-up m-auto" id="us">
+            <h2 class="text-3xl font-semibold">Participating Clubs</h2>
+            <div class="flex m-auto justify-center">
+               <img src="./Image/DESOC.png" alt="Desoc" class="inline w-1/5">
+               <img src="./Image/Phoenix.png" alt="Phoenix" class="inline w-1/6">
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-cream p-5 text-center">
+        <p>&copy; 2024 TechSabha. All rights reserved.</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    
+
+    <script>
+        // Countdown Timer Script
+        const countdownDate = new Date("October 10, 2024 00:00:00").getTime();
+        const timerElement = document.getElementById("timer");
+        const registerButton = document.getElementById("registerButton");
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            timerElement.innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(x);
+                timerElement.innerHTML = "Registration Open!";
+                registerButton.disabled = false;
+                registerButton.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                registerButton.classList.add('bg-green-600', 'hover:bg-green-700');
+            }
+        }, 1000);
+
+        document.addEventListener("DOMContentLoaded", function() {
+         const headings = document.querySelectorAll('h1, h2, h3');
+         headings.forEach((heading) => {
+             const text = heading.innerText;
+             heading.innerHTML = ''; // Clear the heading text
+             let index = 0;
+ 
+             function type() {
+                 if (index < text.length) {
+                     heading.innerHTML += text.charAt(index);
+                     index++;
+                     setTimeout(type, 100); // Adjust typing speed here
+                 } else {
+                     heading.classList.add('typing'); // Add typing class after typing is done
+                 }
+             }
+             type();
+         });
+     });
+
+
+     document.addEventListener("DOMContentLoaded", function() {
+      VANTA.NET({
+          el: "#vanta-bg",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.00,
+          minWidth: 200.00,
+          scale: 1.00,
+          scaleMobile: 1.00,
+          color: 0x3f60ff,
+          backgroundColor: 0x151b3c
+      });
+  });
+ 
+    </script>
+</body>
+</html>
